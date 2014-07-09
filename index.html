@@ -79,7 +79,7 @@
         // message
         if (err instanceof esFactory.errors.NoConnections) {
           $scope.error = new Error('Unable to connect to elasticsearch. ' +
-            'Check that you can reach it at http://localhost:9200');
+            'Make sure that it is running and listening at http://localhost:9200');
         }
       });
 
