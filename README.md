@@ -8,20 +8,23 @@ In order to run this example, you will need to have the following installed
   3. [bower](http://bower.io/#install-bower)
 
 To get the example running:
+
 1. Clone this repo locally
 
-```sh
-git clone https://github.com/spenceralger/elasticsearch-angular-example
-```
+  ```sh
+  git clone https://github.com/spenceralger/elasticsearch-angular-example
+  ```
 
 2. Move into the new repo
-```sh
-cd elasticsearch-angular-example
-```
+
+  ```sh
+  cd elasticsearch-angular-example
+  ```
 
 3. Install the bower dependencies
-```sh
-bower install
-```
+
+  ```sh
+  bower install
+  ```
 
 4. Open the index.html file in your browser
