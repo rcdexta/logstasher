@@ -12,7 +12,7 @@ To get the example running:
 1. Clone this repo locally
 
   ```sh
-  git clone https://github.com/spenceralger/elasticsearch-angular-example
+  git clone https://github.com/spenceralger/elasticsearch-angular-example.git
   ```
 
 2. Move into the new repo
