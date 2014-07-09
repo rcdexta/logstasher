@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Elasticsearch + Angular Example</title>
+
+  <!-- include bower components in proper order -->
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/elasticsearch/elasticsearch.angular.js"></script>
+
+  <!-- include app -->
+  <script src="app/app.js"></script>
+
+  <!-- basic bootstrap styles -->
+  <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+
+</head>
+<!-- ExampleApp module is defined in app/app.js -->
+<body ng-app="ExampleApp" ng-controller="ExampleController">
+  <h1>Angular + Elasticsearch</h1>
+  <div ng-if="error" class="alert alert-danger" role="alert" ng-bind="error"></div>
+  <pre ng-if="serverInfo">{{serverInfo | json}}</pre>
+</body>
+</html>
