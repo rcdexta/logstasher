@@ -6,8 +6,7 @@ This is an example project designed to show how you can use elasticsearch.js wit
 
 In order to run this example, you will need to have the following installed
   1. [elasticsearch](http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/_installing_elasticsearch.html)
-  2. [node.js](http://nodejs.org/)
-  3. [bower](http://bower.io/#install-bower)
+  2. [bower](http://bower.io/#install-bower)
 
 ## To run the example:
 
