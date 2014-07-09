@@ -1,6 +1,6 @@
 # Angular + Elasticsearch Example
 
-This is a very simple project designed to help people get going with angular and elasticsearch. It installs `angular` and `elasticsearch.js` via bower, and then combines them to print out some server information.
+This is an example project designed to show how you can use elasticsearch.js with angular.
 
 ## Prerequisites
 
@@ -9,7 +9,7 @@ In order to run this example, you will need to have the following installed
   2. [node.js](http://nodejs.org/)
   3. [bower](http://bower.io/#install-bower)
 
-## To get the example running:
+## To run the example:
 
 1. Clone this repo locally (or just download and unzip it)
 
@@ -17,7 +17,7 @@ In order to run this example, you will need to have the following installed
   git clone https://github.com/spenceralger/elasticsearch-angular-example.git
   ```
 
-2. Move into the new repo
+2. Move into the project
 
   ```sh
   cd elasticsearch-angular-example
@@ -30,4 +30,4 @@ In order to run this example, you will need to have the following installed
   ```
 
 4. Open the index.html file in your browser.
-5. Check out the source for index.html to see how we tie together the `esFactory` and angular.
+5. Check out the source for [index.html](https://github.com/spenceralger/elasticsearch-angular-example/blob/master/index.html) to see how it works.
