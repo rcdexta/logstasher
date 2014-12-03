@@ -8,8 +8,15 @@ In order to run this example, you will need to have the following installed
   1. [elasticsearch](http://www.elasticsearch.org/guide/en/elasticsearch/guide/current/_installing_elasticsearch.html)
   2. [bower](http://bower.io/#install-bower)
 
-## To run the example:
+You will also need to configure elasticsearch to accept requests from the browser using [CORS](http://en.wikipedia.org/wiki/Cross-origin_resource_sharing). To enable CORS, add the following to elasticsearch's config file. Usually, this file is located near the elasticsearch executable at `config/elasticsearch.yml`.
 
+```yml
+http.cors:
+  enabled: true
+  allow-origin: /https?:\/\/localhost(:[0-9]+)?/
+```
+
+## To run the example:
 1. Clone this repo locally (or just download and unzip it)
 
   ```sh
