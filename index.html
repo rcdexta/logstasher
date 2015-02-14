@@ -10,27 +10,36 @@
 <div ng-controller="ExampleController" class="container">
     <h1>Angular + Elasticsearch</h1>
 
-    <!-- if there is an error, display its message -->
-    <div ng-if="error" class="alert alert-danger" role="alert">{{error.message}}</div>
+    <table st-table="results" st-safe-src="results" class="table table-striped">
+        <thead>
+        <tr>
+            <th st-ratio="10" st-sort="timestamp" st-sort-default="true">Timestamp</th>
+            <th st-ratio="10" st-sort="source">App</th>
+            <th st-ratio="10" st-sort="request_id">RequestId</th>
+            <th st-ratio="75">Content</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="result in results">
+            <td st-ratio="10">{{result.timestamp}}</td>
+            <td st-ratio="5">{{result.source}}</td>
+            <td st-ratio="10">{{formatRequestId(result.request_id)}}</td>
+            <td st-ratio="75">{{result.message}}</td>
+        </tr>
+        </tbody>
+    </table>
 
+</div>
 
-    <ul class="example-animate-container">
-        <li class="animate-repeat" ng-repeat="result in results">
-            {{result['@timestamp']}} {{result.message}}
-        </li>
-    </ul>
+<!-- include bower components in proper order -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/elasticsearch/elasticsearch.angular.js"></script>
+<script src="bower_components/underscore/underscore-min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
 
-    <!-- include bower components in proper order -->
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/elasticsearch/elasticsearch.angular.js"></script>
-    <script src="bower_components/ngInfiniteScroll/build/ng-infininte-scroll.min.js"></script>
-    <script src="bower_components/underscore/underscore-min.js"></script>
-    <script src="src/search.js"></script>
+<link href="src/style.css" rel="stylesheet" type="text/css">
+<script src="src/search.js"></script>
 
-    <!-- app code starts is here -->
-    <script>
-
-
-    </script>
 </body>
 </html>

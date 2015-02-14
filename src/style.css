@@ -1,0 +1,25 @@
+.table {
+    font-family: Monaco, "Lucida Console", monospace;
+    font-size: 9px;
+}
+
+.table td {
+    white-space: nowrap;
+}
+
+.st-sort-ascent:before{
+    content: '\25B2';
+}
+
+.st-sort-descent:before{
+    content: '\25BC';
+}
+
+.st-selected{
+    background: #216eff !important;
+    color: white !important;
+}
+
+.padding{
+    padding: 0.8em;
+}

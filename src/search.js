@@ -9,7 +9,16 @@ underscore.factory('_', function() {
 // The app module will contain all of the components the app needs (directives,
 // controllers, services, etc.). Since it will be using the components within
 // the elasticsearch module, define it a dependency.
-var ExampleApp = angular.module('ExampleApp', ['elasticsearch', 'underscore']);
+var ExampleApp = angular.module('ExampleApp', ['elasticsearch', 'underscore', 'smart-table', 'ui.bootstrap'])
+    .directive('stRatio',function(){
+        return {
+            link:function(scope, element, attr){
+                var ratio=+(attr.stRatio);
+
+                element.css('width',ratio+'%');
+
+            }
+        }});
 
 // Service
 //
@@ -33,6 +42,10 @@ ExampleApp.service('client', function (esFactory) {
 // error which might come back from the client
 ExampleApp.controller('ExampleController', function ($scope, client, esFactory, _) {
 
+    $scope.formatRequestId = function(requestId){
+        return requestId != undefined ? requestId.substring(0,8) : '';
+    }
+
     var pageNum = 1;
     var perPage = 100;
 
@@ -41,11 +54,7 @@ ExampleApp.controller('ExampleController', function ($scope, client, esFactory, 
         from: (pageNum - 1) * perPage,
         size: perPage,
         body: {
-            query: {
-                match: {
-                    source: 'workflow-service'
-                }
-            },
+
             "filter": {
                 "range": {
                     "@timestamp": {
@@ -61,32 +70,10 @@ ExampleApp.controller('ExampleController', function ($scope, client, esFactory, 
             return;
         }
         var results = _.pluck(response.hits.hits, '_source');
-        $scope.results = results;
+        $scope.results = _.map(results, function(elt){
+            return {source: elt.source, request_id: elt['properties.x_request_id'],
+                    timestamp: elt['@timestamp'], message: elt.message};
+        });
     });
-
-    // client.cluster.state({
-    //   metric: [
-    //     'cluster_name',
-    //     'nodes',
-    //     'master_node',
-    //     'version'
-    //   ]
-    // })
-    // .then(function (resp) {
-    //   $scope.clusterState = resp;
-    //   $scope.error = null;
-    // })
-    // .catch(function (err) {
-    //   $scope.clusterState = null;
-    //   $scope.error = err;
-
-    //   // if the err is a NoConnections error, then the client was not able to
-    //   // connect to elasticsearch. In that case, create a more detailed error
-    //   // message
-    //   if (err instanceof esFactory.errors.NoConnections) {
-    //     $scope.error = new Error('Unable to connect to elasticsearch. ' +
-    //       'Make sure that it is running and listening at http://localhost:9200');
-    //   }
-    // });
 
 });

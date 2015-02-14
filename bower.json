@@ -15,7 +15,7 @@
     "elasticsearch": "~2.2.0",
     "angular": "~1.2.19",
     "bootstrap": "~3.2.0",
-    "ngInfiniteScroll": "1.2.0",
-    "underscore": "1.7.0"
+    "underscore": "1.7.0",
+    "angular-smart-table": "1.4.11"
   }
 }
