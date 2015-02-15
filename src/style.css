@@ -7,19 +7,73 @@
     white-space: nowrap;
 }
 
-.st-sort-ascent:before{
+.st-sort-ascent:before {
     content: '\25B2';
 }
 
-.st-sort-descent:before{
+.st-sort-descent:before {
     content: '\25BC';
 }
 
-.st-selected{
+.st-selected {
     background: #216eff !important;
     color: white !important;
 }
 
-.padding{
+.padding {
     padding: 0.8em;
+}
+
+.multi-select {
+    overflow: hidden;
+}
+
+.logstasher {
+    font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+select.soflow {
+    background-color: transparent;
+    border-bottom: 1px solid #777;
+    color: #aaa;
+    font-size: inherit;
+    margin: 0;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    height: 35px;
+}
+
+.search-text {
+    width: 400px;
+    margin-top: 3px;
+}
+
+.search-text .input-group-addon {
+    width: 10px !important;
+}
+
+.transparent {
+    background-color: transparent;
+}
+
+.multiSelect .buttonLabel {
+    padding: 0px;
+}
+
+.clocker{
+    margin-top: 3px;
+}
+
+.clocker i {
+    color: #aaa;
+    font-size: 25px;
+    vertical-align: middle;
+    margin-right: 3px;
 }

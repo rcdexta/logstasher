@@ -1,30 +1,83 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Elasticsearch + Angular Example</title>
+    <title>Logstasher</title>
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-multi-select/angular-multi-select.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link href="src/style.css" rel="stylesheet" type="text/css">
 </head>
 <!-- boot angular with the ExampleApp module -->
 <body ng-app="ExampleApp">
 <!-- attach the ExampleController to our main content -->
-<div ng-controller="ExampleController" class="container">
-    <h1>Angular + Elasticsearch</h1>
+<div ng-controller="ExampleController">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+        <form class="navbar-form">
+
+            <div class="row">
+
+                <div class="col-md-1 logstasher">
+                    Logstasher
+                </div>
+
+                <div class="col-md-5">
+                    <multi-select
+                            input-model="source_apps"
+                            button-label="icon name"
+                            item-label="icon name maker"
+                            tick-property="ticked"
+                            max-labels="5"
+                            >
+                    </multi-select>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="input-group search-text">
+                        <input type="text" class="form-control transparent " id="exampleInputAmount"
+                               placeholder="request-id:">
+                         <span class="input-group-addon">
+                            <i class="fa fa-search"></i>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="col-md-2 clocker">
+                    <i class="fa fa-clock-o"></i>
+
+                    <select ng-model="duration_in_mins"
+                            ng-options="opt as opt.label for opt in duration_options"
+                            class="soflow"
+                            ng-change="fetchLogs()">
+                    </select>
+                </div>
+
+            </div>
+
+        </form>
+
+    </nav>
+
+    <br/>
+    <br/>
+    <br/>
 
     <table st-table="results" st-safe-src="results" class="table table-striped">
         <thead>
         <tr>
             <th st-ratio="10" st-sort="timestamp" st-sort-default="true">Timestamp</th>
-            <th st-ratio="10" st-sort="source">App</th>
-            <th st-ratio="10" st-sort="request_id">RequestId</th>
-            <th st-ratio="75">Content</th>
+            <th st-ratio="5" st-sort="source">App</th>
+            <th st-ratio="5" st-sort="request_id">RequestId</th>
+            <th st-ratio="80">Content</th>
         </tr>
         </thead>
         <tbody>
         <tr ng-repeat="result in results">
             <td st-ratio="10">{{result.timestamp}}</td>
             <td st-ratio="5">{{result.source}}</td>
-            <td st-ratio="10">{{formatRequestId(result.request_id)}}</td>
-            <td st-ratio="75">{{result.message}}</td>
+            <td st-ratio="5">{{formatRequestId(result.request_id)}}</td>
+            <td st-ratio="80">{{result.message}}</td>
         </tr>
         </tbody>
     </table>
@@ -37,8 +90,10 @@
 <script src="bower_components/underscore/underscore-min.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
+<script src="bower_components/angular-multi-select/angular-multi-select.js"></script>
+<script src="bower_components/moment/min/moment.min.js"></script>
 
-<link href="src/style.css" rel="stylesheet" type="text/css">
+<script src="src/clock.js"></script>
 <script src="src/search.js"></script>
 
 </body>

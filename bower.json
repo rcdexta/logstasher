@@ -16,6 +16,9 @@
     "angular": "~1.2.19",
     "bootstrap": "~3.2.0",
     "underscore": "1.7.0",
-    "angular-smart-table": "1.4.11"
+    "angular-smart-table": "1.4.11",
+    "angular-multi-select": "2.0.2",
+    "font-awesome": "~4.3.0",
+    "moment": "~2.9.0"
   }
 }
