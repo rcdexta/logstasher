@@ -1,6 +1,6 @@
-# Angular + Elasticsearch Example
+# Logstasher
 
-This is an example project designed to show how you can use elasticsearch.js with angular.
+A dashboard specifically developed to monitor/analyse logs. This is powered by logstash/elasticsearch
 
 ## Prerequisites
 
@@ -20,13 +20,13 @@ http.cors:
 1. Clone this repo locally (or just download and unzip it)
 
   ```sh
-  git clone https://github.com/spenceralger/elasticsearch-angular-example.git
+  git clone https://github.com/rcdexta/logstasher
   ```
 
 2. Move into the project
 
   ```sh
-  cd elasticsearch-angular-example
+  cd logstasher
   ```
 
 3. Install the bower dependencies
@@ -36,4 +36,4 @@ http.cors:
   ```
 
 4. Open the index.html file in your browser.
-5. Check out the source for [index.html](https://github.com/spenceralger/elasticsearch-angular-example/blob/master/index.html) to see how it works.
+5. Check out the source for [index.html](https://github.com/rcdexta/logstasher/blob/master/index.html) to see how it works.

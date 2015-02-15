@@ -5,10 +5,11 @@
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="bower_components/angular-multi-select/angular-multi-select.css">
     <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-busy/dist/angular-busy.min.css">
     <link href="src/style.css" rel="stylesheet" type="text/css">
 </head>
 <!-- boot angular with the ExampleApp module -->
-<body ng-app="ExampleApp">
+<body ng-app="LogstasherApp">
 <!-- attach the ExampleController to our main content -->
 <div ng-controller="ExampleController">
 
@@ -44,13 +45,17 @@
                 </div>
 
                 <div class="col-md-2 clocker">
-                    <i class="fa fa-clock-o"></i>
+                    <i class="fa fa-clock-o clock-icon"></i>
 
                     <select ng-model="duration_in_mins"
                             ng-options="opt as opt.label for opt in duration_options"
                             class="soflow"
                             ng-change="fetchLogs()">
                     </select>
+
+                    <a ng-click="fetchLogs()">
+                        <i class="fa fa-refresh refresh-button"></i>
+                    </a>
                 </div>
 
             </div>
@@ -59,28 +64,30 @@
 
     </nav>
 
-    <br/>
-    <br/>
-    <br/>
-
-    <table st-table="results" st-safe-src="results" class="table table-striped">
-        <thead>
-        <tr>
-            <th st-ratio="10" st-sort="timestamp" st-sort-default="true">Timestamp</th>
-            <th st-ratio="5" st-sort="source">App</th>
-            <th st-ratio="5" st-sort="request_id">RequestId</th>
-            <th st-ratio="80">Content</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr ng-repeat="result in results">
-            <td st-ratio="10">{{result.timestamp}}</td>
-            <td st-ratio="5">{{result.source}}</td>
-            <td st-ratio="5">{{formatRequestId(result.request_id)}}</td>
-            <td st-ratio="80">{{result.message}}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="log-container" cg-busy="fetchLogsPromise" >
+        <table st-table="results" st-safe-src="results" class="table table-striped" >
+            <thead>
+            <tr>
+                <th st-ratio="10" st-sort="timestamp" st-sort-default="true">Timestamp</th>
+                <th st-ratio="5" st-sort="source">App</th>
+                <th st-ratio="5" st-sort="request_id">RequestId</th>
+                <th st-ratio="80">Content</th>
+            </tr>
+            <div class="stats-count" ng-if="total_count">
+                Fetched: {{fetch_count}} |
+                Total: {{total_count}}
+            </div>
+            </thead>
+            <tbody>
+            <tr ng-repeat="result in results">
+                <td st-ratio="10">{{result.timestamp}}</td>
+                <td st-ratio="5">{{result.source}}</td>
+                <td st-ratio="5">{{formatRequestId(result.request_id)}}</td>
+                <td st-ratio="80">{{result.message}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
 </div>
 
@@ -92,7 +99,9 @@
 <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
 <script src="bower_components/angular-multi-select/angular-multi-select.js"></script>
 <script src="bower_components/moment/min/moment.min.js"></script>
+<script src="bower_components/angular-busy/dist/angular-busy.min.js"></script>
 
+<script src="src/main.js"></script>
 <script src="src/clock.js"></script>
 <script src="src/search.js"></script>
 

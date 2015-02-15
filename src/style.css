@@ -71,9 +71,30 @@ select.soflow {
     margin-top: 3px;
 }
 
-.clocker i {
+.clock-icon {
     color: #aaa;
     font-size: 25px;
     vertical-align: middle;
     margin-right: 3px;
+}
+
+.refresh-button {
+    color: #aaa;
+    margin-left: 5px;
+    font-size: 20px;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.log-container{
+    margin-top: 60px;
+}
+
+.stats-count {
+    position: absolute;
+    right: 32px;
+    font-family: Monaco, "Lucida Console", monospace;
+    font-size: 9px;
+    font-weight: bold;
+    margin-top: 8px;
 }
