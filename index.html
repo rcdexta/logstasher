@@ -27,16 +27,17 @@
                     <multi-select
                             input-model="source_apps"
                             button-label="icon name"
-                            item-label="icon name maker"
+                            item-label="icon name"
                             tick-property="ticked"
                             max-labels="5"
+                            on-close="resetAndPaginate()"
                             >
                     </multi-select>
                 </div>
 
                 <div class="col-md-4">
                     <div class="input-group search-text">
-                        <input type="text" class="form-control transparent " id="exampleInputAmount"
+                        <input type="text" class="form-control transparent " ng-model="search_filter"
                                placeholder="request-id:">
                          <span class="input-group-addon">
                             <i class="fa fa-search"></i>
@@ -64,7 +65,7 @@
 
     </nav>
 
-    <div class="log-container"  ng-show="results.length" id="log-container">
+    <div class="log-container" ng-show="results.length" id="log-container">
         <table st-table="results" st-safe-src="results" st-pagination-scroll st-pipe="paginate"
                class="table table-striped">
             <thead>
@@ -79,7 +80,11 @@
             <tr ng-repeat="result in results">
                 <td st-ratio="10">{{result.timestamp}}</td>
                 <td st-ratio="5">{{result.source}}</td>
-                <td st-ratio="5">{{formatRequestId(result.request_id)}}</td>
+                <td st-ratio="5">
+                    <a ng-href="#?q=request-id:{{result.request_id}}" target="_blank">
+                        {{formatRequestId(result.request_id)}}
+                    </a>
+                </td>
                 <td st-ratio="80">{{result.message}}</td>
             </tr>
             </tbody>
@@ -91,7 +96,7 @@
     <div id="footer">
         <div class="stats-count" ng-if="fetch_count">
             <span ng-show="noMoreData">
-                No-More-Data |
+                End-of-Log |
             </span>
             Fetched: {{fetch_count}}
         </div>
@@ -112,6 +117,7 @@
 <script src="src/main.js"></script>
 <script src="src/clock.js"></script>
 <script src="src/infinitescroll.js"></script>
+<script src="src/filter_builder.js"></script>
 <script src="src/search.js"></script>
 
 </body>
