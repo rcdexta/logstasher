@@ -88,6 +88,9 @@ select.soflow {
 
 .log-container{
     margin-top: 60px;
+    overflow-y:scroll;
+    overflow-x: hidden;
+    height: 700px;
 }
 
 .stats-count {
@@ -96,5 +99,66 @@ select.soflow {
     font-family: Monaco, "Lucida Console", monospace;
     font-size: 9px;
     font-weight: bold;
-    margin-top: 8px;
+    margin-top: 4px;
+}
+
+.loading-indicator {
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    padding: 0.7em; }
+
+.loading-indicator:before {
+    display: inline-block;
+    margin: 0 0.4em;
+    min-width: 1em;
+    min-height: 1em;
+    border: 4px solid #646464;
+    border-right-color: #e6e6e6;
+    border-left-color: #e6e6e6;
+    content: "";
+    -webkit-animation: halfspin 1s ease infinite;
+    -moz-animation: halfspin 1s ease infinite;
+    -o-animation: halfspin 1s ease infinite;
+    animation: halfspin 1s ease infinite;
+    border-radius: 100%; }
+
+@-webkit-keyframes halfspin {
+    to {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        transform: rotate(180deg); }
+}
+
+@-moz-keyframes halfspin {
+    to {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        transform: rotate(180deg); }
+}
+
+@keyframes halfspin {
+    to {
+        -webkit-transform: rotate(180deg);
+        -moz-transform: rotate(180deg);
+        transform: rotate(180deg); }
+}
+
+#footer {
+    position:fixed;
+    left:0px;
+    bottom:0px;
+    height:20px;
+    width:100%;
+    background: #fcf6da;
+    color: #000;
+    padding-bottom: 2px;
+}
+
+
+.center {
+    margin-left: 50%;
+    margin-bottom: 20px;
 }

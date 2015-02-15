@@ -5,8 +5,8 @@
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="bower_components/angular-multi-select/angular-multi-select.css">
     <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/angular-busy/dist/angular-busy.min.css">
-    <link href="src/style.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="bower_components/ngActivityIndicator/css/ngActivityIndicator.min.css">
+    <link href="src/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <!-- boot angular with the ExampleApp module -->
 <body ng-app="LogstasherApp">
@@ -50,10 +50,10 @@
                     <select ng-model="duration_in_mins"
                             ng-options="opt as opt.label for opt in duration_options"
                             class="soflow"
-                            ng-change="fetchLogs()">
+                            ng-change="resetAndPaginate()">
                     </select>
 
-                    <a ng-click="fetchLogs()">
+                    <a ng-click="resetAndPaginate()">
                         <i class="fa fa-refresh refresh-button"></i>
                     </a>
                 </div>
@@ -64,8 +64,9 @@
 
     </nav>
 
-    <div class="log-container" cg-busy="fetchLogsPromise" >
-        <table st-table="results" st-safe-src="results" class="table table-striped" >
+    <div class="log-container"  ng-show="results.length" id="log-container">
+        <table st-table="results" st-safe-src="results" st-pagination-scroll st-pipe="paginate"
+               class="table table-striped">
             <thead>
             <tr>
                 <th st-ratio="10" st-sort="timestamp" st-sort-default="true">Timestamp</th>
@@ -73,10 +74,6 @@
                 <th st-ratio="5" st-sort="request_id">RequestId</th>
                 <th st-ratio="80">Content</th>
             </tr>
-            <div class="stats-count" ng-if="total_count">
-                Fetched: {{fetch_count}} |
-                Total: {{total_count}}
-            </div>
             </thead>
             <tbody>
             <tr ng-repeat="result in results">
@@ -89,6 +86,17 @@
         </table>
     </div>
 
+    <div ng-activity-indicator="DottedDark" class="center"></div>
+
+    <div id="footer">
+        <div class="stats-count" ng-if="fetch_count">
+            <span ng-show="noMoreData">
+                No-More-Data |
+            </span>
+            Fetched: {{fetch_count}}
+        </div>
+    </div>
+
 </div>
 
 <!-- include bower components in proper order -->
@@ -99,10 +107,11 @@
 <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
 <script src="bower_components/angular-multi-select/angular-multi-select.js"></script>
 <script src="bower_components/moment/min/moment.min.js"></script>
-<script src="bower_components/angular-busy/dist/angular-busy.min.js"></script>
+<script src="bower_components/ngActivityIndicator/ngActivityIndicator.min.js"></script>
 
 <script src="src/main.js"></script>
 <script src="src/clock.js"></script>
+<script src="src/infinitescroll.js"></script>
 <script src="src/search.js"></script>
 
 </body>

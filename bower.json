@@ -20,6 +20,6 @@
     "angular-multi-select": "2.0.2",
     "font-awesome": "~4.3.0",
     "moment": "~2.9.0",
-    "angular-busy": "~4.1.2"
+    "ngActivityIndicator": "~0.1.10"
   }
 }

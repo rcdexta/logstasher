@@ -4,7 +4,7 @@ underscore.factory('_', function() {
 });
 
 var LogstasherApp = angular.module('LogstasherApp', ['elasticsearch', 'underscore', 'smart-table',
-    'ui.bootstrap', 'multi-select', 'cgBusy'])
+    'ui.bootstrap', 'multi-select', 'ngActivityIndicator'])
     .directive('stRatio',function(){
         return {
             link:function(scope, element, attr){
@@ -21,6 +21,3 @@ LogstasherApp.service('client', function (esFactory) {
     });
 });
 
-LogstasherApp.value('cgBusyDefaults',{
-    message:'Fetching stash..'
-});
