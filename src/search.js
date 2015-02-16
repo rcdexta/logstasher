@@ -1,4 +1,4 @@
-LogstasherApp.controller('ExampleController', function ($scope, client, esFactory, _, $activityIndicator, $location) {
+LogstasherApp.controller('LogController', function ($scope, client, esFactory, _, $activityIndicator, $location) {
 
     $scope.results = [];
     $scope.lastTimestamp = null;
