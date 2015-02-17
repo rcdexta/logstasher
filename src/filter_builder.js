@@ -21,7 +21,7 @@ function FilterBuilder(){
         var ticked_apps = _.filter(source_apps, function(elt) { return elt.ticked });
         if (total_count != ticked_apps.length) {
             var selected_apps = _.map(ticked_apps, function(elt) {
-                return elt.name;
+                return elt.name.toLowerCase();
             });
             this.sourceAppsFilter = {"terms":{"source": selected_apps}};
         }
@@ -30,9 +30,8 @@ function FilterBuilder(){
 
     this.withSearchFilter = function(search_filter){
         if (search_filter != undefined && search_filter != ''){
-            debugger;
             var request_id = search_filter.match(/request-id\s*:\s*(\w+)/)[1];
-            this.searchFilter = {"term":{"properties.x_request_id": request_id}};
+            this.searchFilter = {"term":{"x_request_id": request_id}};
         }
         return this;
     };

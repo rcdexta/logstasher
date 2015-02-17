@@ -6,7 +6,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
 
     $scope.formatRequestId = function (requestId) {
         return requestId != undefined ? requestId.substring(0, 8) : '';
-    }
+    };
 
     $scope.source_apps = $app_group;
     $scope.duration_options = $duration_options;
