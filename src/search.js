@@ -37,9 +37,10 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
         $scope.httpBusy = true;
         $activityIndicator.startAnimating();
 
+        var index_name = "logstash-" + moment().utc().format("YYYY.MM.DD");
 
         $scope.fetchLogsPromise = client.search({
-            index: 'logstash-2015.02.17',
+            index: index_name,
             from: (pageNum - 1) * perPage,
             size: perPage,
             body: filterBody
