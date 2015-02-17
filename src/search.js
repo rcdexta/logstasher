@@ -10,7 +10,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
 
     $scope.source_apps = $app_group;
     $scope.duration_options = $duration_options;
-    $scope.duration_in_mins = $scope.duration_options[0];
+
 
     $scope.search_filter = $location.search()['q'];
 
@@ -19,6 +19,18 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
         $scope.lastTimestamp = null;
         $scope.noMoreData = false;
         $scope.paginate();
+    };
+
+    if ($scope.search_filter){
+        $scope.duration_in_mins = $scope.duration_options[$scope.duration_options.length -1];
+    }
+    else {
+        $scope.duration_in_mins = $scope.duration_options[0];
+    }
+
+    $scope.wrap = function($event, that){
+        var elt = angular.element($event.currentTarget);
+        elt.removeClass('nowrap');
     };
 
     $scope.paginate = function () {
@@ -50,9 +62,10 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
                 $scope.results = $scope.results.concat(_.map(results, function (elt) {
                     var request_id = elt['properties'] ? elt['properties']['x_request_id'] : '';
                     var actual_request_id = request_id === 'X-Request-Id-Undefined' ? '-' : request_id;
+                    var local_time = moment(Date.parse(elt['@timestamp'])).format('YYYY-MM-DDTHH:mm:ssZ');
                     return {
                         source: elt.source, request_id: actual_request_id,
-                        timestamp: elt['@timestamp'], message: elt.message
+                        timestamp: local_time, message: elt.message
                     };
                 }));
                 $scope.fetch_count = $scope.results.length;

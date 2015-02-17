@@ -73,21 +73,21 @@
                 <thead>
                 <tr>
                     <th st-ratio="10" st-sort="timestamp" st-sort-default="true">Timestamp</th>
-                    <th st-ratio="5" st-sort="source">App</th>
+                    <th st-ratio="10" st-sort="source">App</th>
                     <th st-ratio="5" st-sort="request_id">RequestId</th>
-                    <th st-ratio="80">Content</th>
+                    <th st-ratio="75">Content</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="result in results">
-                    <td st-ratio="10">{{result.timestamp}}</td>
-                    <td st-ratio="5">{{result.source}}</td>
+                    <td st-ratio="10" class="nowrap" >{{result.timestamp}}</td>
+                    <td st-ratio="10">{{result.source}}</td>
                     <td st-ratio="5">
                         <a ng-href="#?q=request-id:{{result.request_id}}" target="_blank">
                             {{formatRequestId(result.request_id)}}
                         </a>
                     </td>
-                    <td st-ratio="80">{{result.message}}</td>
+                    <td st-ratio="75" class="nowrap" ng-click="wrap($event)">{{result.message}}</td>
                 </tr>
                 </tbody>
             </table>
