@@ -21,7 +21,7 @@ function FilterBuilder(){
         var ticked_apps = _.filter(source_apps, function(elt) { return elt.ticked });
         if (total_count != ticked_apps.length) {
             var selected_apps = _.map(ticked_apps, function(elt) {
-                return elt.name.split("-")[0]; //temp solution till app names are changed to CamelCase
+                return elt.name;
             });
             this.sourceAppsFilter = {"terms":{"source": selected_apps}};
         }

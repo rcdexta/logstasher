@@ -10,7 +10,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
 
     $scope.source_apps = $app_group;
     $scope.duration_options = $duration_options;
-    $scope.duration_in_mins = $scope.duration_options[4];
+    $scope.duration_in_mins = $scope.duration_options[0];
 
     $scope.search_filter = $location.search()['q'];
 
@@ -37,8 +37,9 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
         $scope.httpBusy = true;
         $activityIndicator.startAnimating();
 
+
         $scope.fetchLogsPromise = client.search({
-            index: 'logstash-2015.02.15',
+            index: 'logstash-2015.02.17',
             from: (pageNum - 1) * perPage,
             size: perPage,
             body: filterBody
@@ -46,8 +47,10 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
             var results = _.pluck(response.hits.hits, '_source');
             if (results.length > 0) {
                 $scope.results = $scope.results.concat(_.map(results, function (elt) {
+                    var request_id = elt['properties'] ? elt['properties']['x_request_id'] : '';
+                    var actual_request_id = request_id === 'X-Request-Id-Undefined' ? '-' : request_id;
                     return {
-                        source: elt.source, request_id: elt['properties.x_request_id'],
+                        source: elt.source, request_id: actual_request_id,
                         timestamp: elt['@timestamp'], message: elt.message
                     };
                 }));

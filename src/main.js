@@ -3,8 +3,9 @@ underscore.factory('_', function() {
     return window._; // assumes underscore has already been loaded on the page
 });
 
+
 var LogstasherApp = angular.module('LogstasherApp', ['elasticsearch', 'underscore', 'smart-table',
-    'ui.bootstrap', 'multi-select', 'ngActivityIndicator'])
+    'ui.bootstrap', 'multi-select', 'ngActivityIndicator', 'cgBusy'])
     .directive('stRatio',function(){
         return {
             link:function(scope, element, attr){
@@ -13,28 +14,35 @@ var LogstasherApp = angular.module('LogstasherApp', ['elasticsearch', 'underscor
             }
         }});
 
+angular.module('LogstasherApp').value('cgBusyDefaults',{
+    message:'Loading Logs...',
+    backdrop: true
+});
+
+
 LogstasherApp.service('client', function (esFactory) {
     return esFactory({
-        host: 'localhost:9200',
+        host: '54.186.128.52',
         apiVersion: '1.2',
         log: 'trace'
     });
 });
 
 var $app_group = [
-    {icon: '<img src="assets/images/ruby.png"/>', name: "pro-app-api", ticked: true},
-    {icon: '<img src="assets/images/java.png"/>', name: "workflow-service", ticked: true},
-    {icon: '<img src="assets/images/java.png"/>', name: "identity-service", ticked: true},
-    {icon: '<img src="assets/images/java.png"/>', name: "customer-order-service", ticked: true},
-    {icon: '<img src="assets/images/java.png"/>', name: "customer-identity-service", ticked: true},
-    {icon: '<img src="assets/images/java.png"/>', name: "worklow-service", ticked: true},
-    {icon: '<img src="assets/images/java.png"/>', name: "magic-list-service", ticked: true},
-    {icon: '<img src="assets/images/java.png"/>', name: "catalog-service", ticked: true},
+    {icon: '<img src="assets/images/ruby.png"/>', name: "ProAppApi", ticked: true},
+    {icon: '<img src="assets/images/java.png"/>', name: "WorkflowService", ticked: true},
+    {icon: '<img src="assets/images/java.png"/>', name: "IdentityService", ticked: true},
+    {icon: '<img src="assets/images/java.png"/>', name: "CustomerOrderService", ticked: true},
+    {icon: '<img src="assets/images/java.png"/>', name: "CustomerIdentityService", ticked: true},
+    {icon: '<img src="assets/images/java.png"/>', name: "MagicListService", ticked: true},
+    {icon: '<img src="assets/images/java.png"/>', name: "CatalogService", ticked: true},
+    {icon: '<img src="assets/images/java.png"/>', name: "CoreService", ticked: true}
 ];
 
 var $duration_options = [
     {label: 'Last 5m', value: 5},
-    {label: 'Last 15m', value: 15},
+    {label: 'Last 10m', value: 10},
+    {label: 'Last 30m', value: 30},
     {label: 'Last 1h', value: 60},
     {label: 'Last 3h', value: 180},
     {label: 'Last 6h', value: 360},

@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Logstasher</title>
-    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/angular-multi-select/angular-multi-select.css">
     <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/ngActivityIndicator/css/ngActivityIndicator.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-busy/dist/angular-busy.min.css">
     <link href="src/css/style.css" rel="stylesheet" type="text/css">
 </head>
 <body ng-app="LogstasherApp">
@@ -62,36 +63,42 @@
 
     </nav>
 
-    <div class="log-container" ng-show="results.length" id="log-container">
-        <table st-table="results" st-safe-src="results" st-pagination-scroll st-pipe="paginate"
-               class="table table-striped">
-            <thead>
-            <tr>
-                <th st-ratio="10" st-sort="timestamp" st-sort-default="true">Timestamp</th>
-                <th st-ratio="5" st-sort="source">App</th>
-                <th st-ratio="5" st-sort="request_id">RequestId</th>
-                <th st-ratio="80">Content</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="result in results">
-                <td st-ratio="10">{{result.timestamp}}</td>
-                <td st-ratio="5">{{result.source}}</td>
-                <td st-ratio="5">
-                    <a ng-href="#?q=request-id:{{result.request_id}}" target="_blank">
-                        {{formatRequestId(result.request_id)}}
-                    </a>
-                </td>
-                <td st-ratio="80">{{result.message}}</td>
-            </tr>
-            </tbody>
-        </table>
+
+    <div class="log-container" id="log-container">
+
+        <div cg-busy="fetchLogsPromise">
+
+            <table st-table="results" st-safe-src="results" st-pagination-scroll st-pipe="paginate"
+                   class="table table-striped">
+                <thead>
+                <tr>
+                    <th st-ratio="10" st-sort="timestamp" st-sort-default="true">Timestamp</th>
+                    <th st-ratio="5" st-sort="source">App</th>
+                    <th st-ratio="5" st-sort="request_id">RequestId</th>
+                    <th st-ratio="80">Content</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="result in results">
+                    <td st-ratio="10">{{result.timestamp}}</td>
+                    <td st-ratio="5">{{result.source}}</td>
+                    <td st-ratio="5">
+                        <a ng-href="#?q=request-id:{{result.request_id}}" target="_blank">
+                            {{formatRequestId(result.request_id)}}
+                        </a>
+                    </td>
+                    <td st-ratio="80">{{result.message}}</td>
+                </tr>
+                </tbody>
+            </table>
+
+        </div>
     </div>
 
     <div ng-activity-indicator="DottedDark" class="center"></div>
 
     <div id="footer">
-        <div class="stats-count" ng-if="fetch_count">
+        <div class="stats-count" ng-if="fetch_count" ng-show="results.length">
             <span ng-show="noMoreData">
                 End-of-Log |
             </span>
@@ -102,14 +109,15 @@
 </div>
 
 <!-- include bower components in proper order -->
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/elasticsearch/elasticsearch.angular.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/elasticsearch/elasticsearch.angular.min.js"></script>
 <script src="bower_components/underscore/underscore-min.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
 <script src="bower_components/angular-multi-select/angular-multi-select.js"></script>
 <script src="bower_components/moment/min/moment.min.js"></script>
 <script src="bower_components/ngActivityIndicator/ngActivityIndicator.min.js"></script>
+<script src="bower_components/angular-busy/dist/angular-busy.min.js"></script>
 
 <script src="src/main.js"></script>
 <script src="src/clock.js"></script>
