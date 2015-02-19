@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="bower_components/ngActivityIndicator/css/ngActivityIndicator.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/angular-busy/dist/angular-busy.min.css">
     <link href="src/css/style.css" rel="stylesheet" type="text/css">
+    <link href="src/css/404.css" rel="stylesheet" type="text/css">
 </head>
 <body ng-app="LogstasherApp">
 <div ng-controller="LogController">
@@ -52,8 +53,8 @@
                             ng-change="resetAndPaginate()">
                     </select>
 
-                    <a ng-click="resetAndPaginate()">
-                        <i class="fa fa-refresh refresh-button"></i>
+                    <a ng-click="resetAndPaginate()" class="btn btn-success refresh-btn">
+                        <i class="glyphicon glyphicon-refresh " ng-class="{'glyphicon-refresh-animate': httpBusy}"></i>
                     </a>
                 </div>
 
@@ -68,29 +69,41 @@
 
         <div cg-busy="fetchLogsPromise"></div>
 
-            <table st-table="results" st-safe-src="results" st-pagination-scroll st-pipe="paginate"
-                   class="table table-striped">
-                <thead>
-                <tr>
-                    <th st-ratio="10" st-sort="timestamp" st-sort-default="true">Timestamp</th>
-                    <th st-ratio="10" st-sort="source">App</th>
-                    <th st-ratio="5" st-sort="request_id">RequestId</th>
-                    <th st-ratio="75">Content</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr ng-repeat="result in results">
-                    <td st-ratio="10" class="nowrap" >{{result.timestamp}}</td>
-                    <td st-ratio="10">{{result.source}}</td>
-                    <td st-ratio="5">
-                        <a ng-href="#?q=request-id:{{result.request_id}}" target="_blank">
-                            {{formatRequestId(result.request_id)}}
-                        </a>
-                    </td>
-                    <td st-ratio="75" class="nowrap" ng-click="wrap($event)">{{result.message}}</td>
-                </tr>
-                </tbody>
-            </table>
+        <table st-table="results" st-safe-src="results" st-pagination-scroll st-pipe="paginate" ng-show="results.length"
+               class="table table-striped">
+            <thead>
+            <tr>
+                <th st-ratio="10" st-sort="timestamp" st-sort-default="true">Timestamp</th>
+                <th st-ratio="10" st-sort="source">App</th>
+                <th st-ratio="5" st-sort="request_id">RequestId</th>
+                <th st-ratio="75">Content</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="result in results">
+                <td st-ratio="10" class="nowrap">{{result.timestamp}}</td>
+                <td st-ratio="10">{{result.source}}</td>
+                <td st-ratio="5">
+                    <a ng-href="#?q=request-id:{{result.request_id}}" target="_blank">
+                        {{formatRequestId(result.request_id)}}
+                    </a>
+                </td>
+                <td st-ratio="75" class="nowrap" ng-click="wrap($event)">{{result.message}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <div ng-show="flag_404" class="overlay_404">
+            <div class="wrapper">
+                <h1>oops!</h1>
+                <h3>No Logs found...</h3>
+                <p> Please review if duration and app filters look correct!</o>
+                </ul>
+                <div class="controls">
+                    <a href="#" class="btn" ng-click="resetAndPaginate()">Refresh Again</a>
+                </div>
+            </div>
+        </div>
 
 
     </div>

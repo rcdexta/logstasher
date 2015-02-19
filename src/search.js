@@ -10,7 +10,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
 
     $scope.source_apps = $app_group;
     $scope.duration_options = $duration_options;
-
+    $scope.flag_404 = false;
 
     $scope.search_filter = $location.search()['q'];
 
@@ -72,6 +72,9 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
                 $scope.lastTimestamp = _.last(results)['@timestamp'];
             } else {
                 $scope.noMoreData = true;
+                if ($scope.lastTimestamp == null) {
+                    $scope.flag_404 = true;
+                }
             }
             $scope.httpBusy = false;
             $activityIndicator.stopAnimating();

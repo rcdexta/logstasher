@@ -1,0 +1,24 @@
+.overlay_404 {
+    position: relative;
+    text-align: center;
+    font-family: "Oxygen";
+}
+
+.overlay_404 h1 {
+    font-family: "Francois One";
+    font-weight: 800;
+    font-size: 3em;
+    color: #727479;
+}
+
+.overlay_404 h3 {
+    color: #a50;
+}
+
+.overlay_404 .wrapper {
+    width: 320px;
+    height: 320px;
+    width: 100%;
+    text-align: center;
+    background-color: #fff;
+}
