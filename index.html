@@ -19,7 +19,9 @@
             <div class="row">
 
                 <div class="col-md-1 logstasher">
-                    Logstasher
+                    <a href="/">
+                        Logstasher
+                    </a>
                 </div>
 
                 <div class="col-md-5">
@@ -37,7 +39,7 @@
                 <div class="col-md-4">
                     <div class="input-group search-text">
                         <input type="text" class="form-control transparent " ng-model="search_filter"
-                               placeholder="request-id:">
+                               placeholder="search request_id directly or field:<value>">
                          <span class="input-group-addon">
                             <i class="fa fa-search"></i>
                         </span>
@@ -84,7 +86,7 @@
                 <td st-ratio="10" class="nowrap">{{result.timestamp}}</td>
                 <td st-ratio="10">{{result.source}}</td>
                 <td st-ratio="5">
-                    <a ng-href="#?q=request-id:{{result.request_id}}" target="_blank">
+                    <a ng-href="#?q=x_request_id:{{result.request_id}}" target="_blank">
                         {{formatRequestId(result.request_id)}}
                     </a>
                 </td>
@@ -96,9 +98,12 @@
         <div ng-show="flag_404" class="overlay_404">
             <div class="wrapper">
                 <h1>oops!</h1>
+
                 <h3>No Logs found...</h3>
+
                 <p> Please review if duration and app filters look correct!</o>
-                </ul>
+                    </ul>
+
                 <div class="controls">
                     <a href="#" class="btn" ng-click="resetAndPaginate()">Refresh Again</a>
                 </div>

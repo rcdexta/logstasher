@@ -30,8 +30,17 @@ function FilterBuilder(){
 
     this.withSearchFilter = function(search_filter){
         if (search_filter != undefined && search_filter != ''){
-            var request_id = search_filter.match(/request-id\s*:\s*(\w+)/)[1];
-            this.searchFilter = {"term":{"x_request_id": request_id}};
+            var term_filter = search_filter.match(/(\w+)\s*:\s*(\w+)/);
+            if (term_filter){
+                var filter_json = {};
+                filter_json[term_filter[1]] = term_filter[2];
+                this.searchFilter = {"term": filter_json};
+            }
+            else {
+                var filter_json = {};
+                filter_json['x_request_id'] = search_filter.split('-')[0];
+                this.searchFilter = {"term": filter_json};
+            }
         }
         return this;
     };
