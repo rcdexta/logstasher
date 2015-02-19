@@ -167,7 +167,6 @@ select.soflow {
     padding-bottom: 2px;
 }
 
-
 .center {
     margin-left: 50%;
     margin-bottom: 20px;
@@ -186,4 +185,9 @@ select.soflow {
 @keyframes spin {
     from { transform: scale(1) rotate(0deg);}
     to { transform: scale(1) rotate(360deg);}
+}
+
+.error_row{
+    background-color: #2f4f4f;
+    color: #fff;
 }

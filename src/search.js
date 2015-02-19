@@ -65,7 +65,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
                     var local_time = moment(Date.parse(elt['@timestamp'])).format('YYYY-MM-DDTHH:mm:ssZ');
                     return {
                         source: elt.source, request_id: actual_request_id,
-                        timestamp: local_time, message: elt.message
+                        timestamp: local_time, message: elt.message, level: elt.level
                     };
                 }));
                 $scope.fetch_count = $scope.results.length;
