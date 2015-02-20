@@ -53,7 +53,7 @@ select.soflow {
 }
 
 .search-text {
-    width: 400px;
+    width: 100%;
     margin-top: 3px;
 }
 
@@ -73,7 +73,7 @@ select.soflow {
     padding: 0px;
 }
 
-.clocker{
+.clocker {
     margin-top: 3px;
 }
 
@@ -86,6 +86,7 @@ select.soflow {
 
 .refresh-btn {
     margin-left: 5px;
+    margin-top: -2px;
 }
 
 .glyphicon-refresh {
@@ -96,9 +97,9 @@ select.soflow {
     cursor: pointer;
 }
 
-.log-container{
+.log-container {
     margin-top: 60px;
-    overflow-y:scroll;
+    overflow-y: scroll;
     overflow-x: hidden;
     height: 700px;
 }
@@ -118,7 +119,8 @@ select.soflow {
     -moz-box-sizing: border-box;
     width: 100%;
     text-align: center;
-    padding: 0.7em; }
+    padding: 0.7em;
+}
 
 .loading-indicator:before {
     display: inline-block;
@@ -133,35 +135,39 @@ select.soflow {
     -moz-animation: halfspin 1s ease infinite;
     -o-animation: halfspin 1s ease infinite;
     animation: halfspin 1s ease infinite;
-    border-radius: 100%; }
+    border-radius: 100%;
+}
 
 @-webkit-keyframes halfspin {
     to {
         -webkit-transform: rotate(180deg);
         -moz-transform: rotate(180deg);
-        transform: rotate(180deg); }
+        transform: rotate(180deg);
+    }
 }
 
 @-moz-keyframes halfspin {
     to {
         -webkit-transform: rotate(180deg);
         -moz-transform: rotate(180deg);
-        transform: rotate(180deg); }
+        transform: rotate(180deg);
+    }
 }
 
 @keyframes halfspin {
     to {
         -webkit-transform: rotate(180deg);
         -moz-transform: rotate(180deg);
-        transform: rotate(180deg); }
+        transform: rotate(180deg);
+    }
 }
 
 #footer {
-    position:fixed;
-    left:0px;
-    bottom:0px;
-    height:20px;
-    width:100%;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 20px;
+    width: 100%;
     background: #fcf6da;
     color: #000;
     padding-bottom: 2px;
@@ -178,16 +184,28 @@ select.soflow {
 }
 
 @-webkit-keyframes spin2 {
-    from { -webkit-transform: rotate(0deg);}
-    to { -webkit-transform: rotate(360deg);}
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
 }
 
 @keyframes spin {
-    from { transform: scale(1) rotate(0deg);}
-    to { transform: scale(1) rotate(360deg);}
+    from {
+        transform: scale(1) rotate(0deg);
+    }
+    to {
+        transform: scale(1) rotate(360deg);
+    }
 }
 
-.error_row{
+.error_row {
     background-color: #2f4f4f;
     color: #fff;
+}
+
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none;
 }

@@ -3,6 +3,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
     $scope.results = [];
     $scope.lastTimestamp = null;
     $scope.httpBusy = false;
+    $scope.flag_404 = false;
 
     $scope.formatRequestId = function (requestId) {
         return requestId != undefined ? requestId.substring(0, 8) : '';

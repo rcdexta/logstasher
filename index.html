@@ -71,7 +71,7 @@
 
         <div cg-busy="fetchLogsPromise"></div>
 
-        <table st-table="results" st-safe-src="results" st-pagination-scroll st-pipe="paginate" ng-show="results.length"
+        <table st-table="results" st-safe-src="results" st-pagination-scroll st-pipe="paginate" ng-show="results.length" ng-cloak
                class="table table-striped">
             <thead>
             <tr>
@@ -97,7 +97,7 @@
             </tbody>
         </table>
 
-        <div ng-show="flag_404" class="overlay_404">
+        <div ng-show="flag_404 == true" ng-cloak class="overlay_404">
             <div class="wrapper">
                 <h1>oops!</h1>
 
