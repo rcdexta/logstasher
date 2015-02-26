@@ -30,13 +30,16 @@ LogstasherApp.service('client', function (esFactory) {
 
 var $app_group = [
     {icon: '<img src="assets/images/ruby.png"/>', name: "ProAppApi", ticked: true},
+    {icon: '<img src="assets/images/ruby.png"/>', name: "Blender", ticked: true},
     {icon: '<img src="assets/images/java.png"/>', name: "WorkflowService", ticked: true},
     {icon: '<img src="assets/images/java.png"/>', name: "IdentityService", ticked: true},
     {icon: '<img src="assets/images/java.png"/>', name: "CustomerOrderService", ticked: true},
     {icon: '<img src="assets/images/java.png"/>', name: "CustomerIdentityService", ticked: true},
     {icon: '<img src="assets/images/java.png"/>', name: "MagicListService", ticked: true},
     {icon: '<img src="assets/images/java.png"/>', name: "CatalogService", ticked: true},
-    {icon: '<img src="assets/images/java.png"/>', name: "CoreService", ticked: true}
+    {icon: '<img src="assets/images/java.png"/>', name: "CoreService", ticked: true},
+    {icon: '<img src="assets/images/java.png"/>', name: "Commodore", ticked: true},
+    {icon: '<img src="assets/images/java.png"/>', name: "Timecop", ticked: true}
 ];
 
 var $duration_options = [
