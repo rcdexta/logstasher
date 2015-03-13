@@ -34,9 +34,10 @@
     font-family: "Helvetica Neue Light", "HelveticaNeue-Light", "Helvetica Neue", Calibri, Helvetica, Arial;
     font-size: 14px;
     color: #aaa;
-    margin-top: 10px;
+    margin-top: 5px;
     text-transform: uppercase;
     font-weight: bold;
+    text-align: center;
 }
 
 select.soflow {

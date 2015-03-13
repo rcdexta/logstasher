@@ -22,7 +22,7 @@ angular.module('LogstasherApp').value('cgBusyDefaults',{
 
 LogstasherApp.service('client', function (esFactory) {
     return esFactory({
-        host: 'logstasher-staging.pro.com',
+        host: 'logstasher.pro.com',
         apiVersion: '1.2',
         log: 'trace'
     });
@@ -55,4 +55,6 @@ var $duration_options = [
     {label: 'Last 6h', value: 360},
     {label: 'Last 12h', value: 720},
     {label: 'Last 24h', value: 1440},
+    {label: 'Last 7d', value: 10080},
+    {label: 'Last 30d', value: 43200}
 ];
