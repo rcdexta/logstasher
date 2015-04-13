@@ -50,7 +50,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
         $scope.httpBusy = true;
         $activityIndicator.startAnimating();
 
-        var index_name = "logstash-" + moment().utc().format("YYYY.MM.DD");
+        var index_name = clock.getDays($scope.duration_in_mins.value);
 
         $scope.fetchLogsPromise = client.search({
             index: index_name,
@@ -63,7 +63,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
                 $scope.results = $scope.results.concat(_.map(results, function (elt) {
                     var request_id = elt['properties'] ? elt['properties']['x_request_id'] : '';
                     var actual_request_id = request_id === 'X-Request-Id-Undefined' ? '-' : request_id;
-                    var local_time = moment(Date.parse(elt['@timestamp'])).format('YYYY-MM-DDTHH:mm:ssZ');
+                    var local_time = moment(Date.parse(elt['@timestamp'])).format('YYYY-MM-DDTHH:mm:ss.SSS');
                     return {
                         source: elt.source, request_id: actual_request_id,
                         timestamp: local_time, message: elt.message, level: elt.level
@@ -71,6 +71,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
                 }));
                 $scope.fetch_count = $scope.results.length;
                 $scope.lastTimestamp = _.last(results)['@timestamp'];
+                $scope.timezone = moment(Date.parse($scope.lastTimestamp)).format('Z');
             } else {
                 $scope.noMoreData = true;
                 if ($scope.lastTimestamp == null) {

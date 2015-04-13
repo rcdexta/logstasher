@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="bower_components/angular-multi-select/angular-multi-select.css">
     <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/ngActivityIndicator/css/ngActivityIndicator.min.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/angular-busy/dist/angular-busy.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-busy/dist/angular-busy.css">
     <link href="src/css/style.css" rel="stylesheet" type="text/css">
     <link href="src/css/404.css" rel="stylesheet" type="text/css">
 </head>
@@ -20,7 +20,7 @@
 
                 <div class="col-md-1 logstasher">
                     <a href="/">
-                        Logstasher Prod
+                        Logstasher Staging
                     </a>
                 </div>
 
@@ -118,6 +118,9 @@
     <div ng-activity-indicator="DottedDark" class="center"></div>
 
     <div id="footer">
+        <div class="status-left">
+            Timezone: {{timezone}}
+        </div>
         <div class="stats-count" ng-if="fetch_count" ng-show="results.length">
             <span ng-show="noMoreData">
                 End-of-Log |
@@ -137,7 +140,7 @@
 <script src="bower_components/angular-multi-select/angular-multi-select.js"></script>
 <script src="bower_components/moment/min/moment.min.js"></script>
 <script src="bower_components/ngActivityIndicator/ngActivityIndicator.min.js"></script>
-<script src="bower_components/angular-busy/dist/angular-busy.min.js"></script>
+<script src="bower_components/angular-busy/dist/angular-busy.js"></script>
 
 <script src="src/main.js"></script>
 <script src="src/clock.js"></script>

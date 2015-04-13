@@ -22,7 +22,7 @@ angular.module('LogstasherApp').value('cgBusyDefaults',{
 
 LogstasherApp.service('client', function (esFactory) {
     return esFactory({
-        host: 'logstasher.pro.com',
+        host: 'logstasher-staging.pro.com',
         apiVersion: '1.2',
         log: 'trace'
     });
