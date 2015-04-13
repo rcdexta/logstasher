@@ -19,6 +19,22 @@ angular.module('LogstasherApp').value('cgBusyDefaults',{
     backdrop: true
 });
 
+angular
+    .module('LogstasherApp')
+    .directive('ngEnter', function() {
+        return function(scope, element, attrs) {
+            element.bind("keydown keypress", function(event) {
+                if(event.which === 13) {
+                    scope.$apply(function(){
+                        scope.$eval(attrs.ngEnter, {'event': event});
+                    });
+
+                    event.preventDefault();
+                }
+            });
+        };
+    });
+
 
 LogstasherApp.service('client', function (esFactory) {
     return esFactory({
