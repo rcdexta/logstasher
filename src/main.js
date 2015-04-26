@@ -51,6 +51,7 @@ var $app_group = [
     {icon: '<img src="assets/images/ruby.png"/>', name: "PushoverService", ticked: true},
     {icon: '<img src="assets/images/ruby.png"/>', name: "ProCentral", ticked: true},
     {icon: '<img src="assets/images/ruby.png"/>', name: "ProUi", ticked: true},
+    {icon: '<img src="assets/images/ruby.png"/>', name: "Propeller", ticked: true},
     {icon: '<img src="assets/images/java.png"/>', name: "CatalogService", ticked: true},
     {icon: '<img src="assets/images/java.png"/>', name: "Commodore", ticked: true},
     {icon: '<img src="assets/images/java.png"/>', name: "CoreService", ticked: true},
@@ -59,7 +60,8 @@ var $app_group = [
     {icon: '<img src="assets/images/java.png"/>', name: "IdentityService", ticked: true},
     {icon: '<img src="assets/images/java.png"/>', name: "MagicListService", ticked: true},
     {icon: '<img src="assets/images/java.png"/>', name: "Timecop", ticked: true},
-    {icon: '<img src="assets/images/java.png"/>', name: "WorkflowService", ticked: true}
+    {icon: '<img src="assets/images/java.png"/>', name: "WorkflowService", ticked: true},
+    {icon: '<img src="assets/images/java.png"/>', name: "JobManagerService", ticked: true}
 ];
 
 var $duration_options = [
