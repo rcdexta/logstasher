@@ -217,10 +217,14 @@ select.soflow {
 }
 
 .request_id_link {
-    text-decoration: underline;
     color: magenta;
     cursor: pointer;
 }
+
+.request_id_link:hover {
+    text-decoration: underline;
+}
+
 
 [ng\:cloak], [ng-cloak], .ng-cloak {
     display: none;
