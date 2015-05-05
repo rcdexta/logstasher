@@ -65,6 +65,7 @@ var $app_group = [
 ];
 
 var $duration_options = [
+    {label: 'Last 2m', value: 2},
     {label: 'Last 5m', value: 5},
     {label: 'Last 10m', value: 10},
     {label: 'Last 30m', value: 30},
@@ -74,5 +75,6 @@ var $duration_options = [
     {label: 'Last 12h', value: 720},
     {label: 'Last 24h', value: 1440},
     {label: 'Last 7d', value: 10080},
-    {label: 'Last 30d', value: 43200}
+    {label: 'Last 30d', value: 43200},
+    {label: 'Last 60d', value: 86400}
 ];

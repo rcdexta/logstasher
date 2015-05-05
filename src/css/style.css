@@ -216,6 +216,12 @@ select.soflow {
     color: #fff;
 }
 
+.request_id_link {
+    text-decoration: underline;
+    color: magenta;
+    cursor: pointer;
+}
+
 [ng\:cloak], [ng-cloak], .ng-cloak {
     display: none;
 }

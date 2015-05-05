@@ -22,11 +22,19 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
         $scope.paginate();
     };
 
+    $scope.showRequest = function(x_request_id){
+        window.open(window.location.href + '#?q=x_request_id:' + x_request_id + '&d=' + $scope.duration_in_mins.value, '_blank');
+    };
+
     if ($scope.search_filter){
-        $scope.duration_in_mins = $scope.duration_options[$scope.duration_options.length -1];
+        var duration_from_url = $location.search()['d'];
+        var selected_duration = _.findWhere($scope.duration_options, {value: parseInt(duration_from_url)});
+        var selected_index = _.indexOf($scope.duration_options, selected_duration);
+        var idx = selected_index == $scope.duration_options.length - 1 ? selected_index : selected_index + 1;
+        $scope.duration_in_mins = $scope.duration_options[idx];
     }
     else {
-        $scope.duration_in_mins = $scope.duration_options[0];
+        $scope.duration_in_mins = $scope.duration_options[1];
     }
 
     $scope.wrap = function($event, that){

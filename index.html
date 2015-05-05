@@ -87,9 +87,9 @@
                 <td st-ratio="10" class="nowrap">{{result.timestamp}}</td>
                 <td st-ratio="10">{{result.source}}</td>
                 <td st-ratio="5">
-                    <a ng-href="#?q=x_request_id:{{result.request_id}}" target="_blank">
+                    <div ng-click="showRequest(result.request_id)" ng-class="{request_id_link: result.request_id != '-'}">
                         {{formatRequestId(result.request_id)}}
-                    </a>
+                    </div>
                 </td>
                 <td st-ratio="5">{{result.level}}</td>
                 <td st-ratio="75" class="nowrap" ng-click="wrap($event)">{{result.message}}</td>
