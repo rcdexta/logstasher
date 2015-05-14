@@ -23,7 +23,11 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
     };
 
     $scope.showRequest = function(x_request_id){
-        window.open(window.location.href + '#?q=x_request_id:' + x_request_id + '&d=' + $scope.duration_in_mins.value, '_blank');
+        var url = window.location.href;
+        if (url.indexOf('#?') != -1){
+           url = url.slice(0, url.indexOf('#?'));
+        }
+        window.open(url + '#?q=x_request_id:' + x_request_id + '&d=' + $scope.duration_in_mins.value, '_blank');
     };
 
     if ($scope.search_filter){
