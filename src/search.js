@@ -27,7 +27,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
         if (url.indexOf('#?') != -1){
            url = url.slice(0, url.indexOf('#?'));
         }
-        window.open(url + '#?q=x_request_id:' + x_request_id + '&d=' + $scope.duration_in_mins.value, '_blank');
+        window.open(url + '#?q=id:' + x_request_id + '&d=' + $scope.duration_in_mins.value, '_blank');
     };
 
     if ($scope.search_filter){

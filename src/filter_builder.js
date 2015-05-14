@@ -31,7 +31,7 @@ function FilterBuilder(){
 
     this.withSearchFilter = function(search_filter){
         if (search_filter != undefined && search_filter != ''){
-            if (search_filter.indexOf("x_request_id") == 0){
+            if (search_filter.indexOf("x_request_id:") == 0 || search_filter.indexOf("id:") == 0){
                 var filter_json = {};
                 filter_json['x_request_id'] = search_filter.split(':')[1].split('-')[0];
                 this.requestIdFilter = {"term": filter_json};

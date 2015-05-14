@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Logstasher Prod</title>
+    <title>Logstasher Staging</title>
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/angular-multi-select/angular-multi-select.css">
     <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
@@ -39,10 +39,8 @@
                 <div class="col-md-4">
                     <div class="input-group search-text">
                         <input type="text" class="form-control transparent " ng-model="search_filter"
-                               placeholder="search request_id directly or field:<value>" ng-enter="resetAndPaginate()">
-                         <span class="input-group-addon">
-                            <i class="fa fa-search"></i>
-                        </span>
+                               placeholder="search by any keyword or id:<x_request_id>" ng-enter="resetAndPaginate()">
+                         
                     </div>
                 </div>
 
