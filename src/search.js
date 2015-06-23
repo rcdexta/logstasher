@@ -74,6 +74,9 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
             if (results.length > 0) {
                 $scope.results = $scope.results.concat(_.map(results, function (elt) {
                     var request_id = elt['properties'] ? elt['properties']['x_request_id'] : '';
+                    if (elt.throwable) {
+                        elt.message += elt.throwable;
+                    }
                     var actual_request_id = request_id === 'X-Request-Id-Undefined' ? '-' : request_id;
                     var local_time = moment(Date.parse(elt['@timestamp'])).format('YYYY-MM-DDTHH:mm:ss.SSS');
                     return {
