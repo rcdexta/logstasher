@@ -229,3 +229,7 @@ select.soflow {
 [ng\:cloak], [ng-cloak], .ng-cloak {
     display: none;
 }
+
+.angular-highlight {
+    background-color: yellow;
+}
