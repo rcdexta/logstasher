@@ -50,15 +50,15 @@ function FilterBuilder(){
             else {
                 this.searchFilter = {
                   "bool": {
-                    "must": {
-                      "multi_match": {
-                        "query": search_filter,
-                        "type": "best_fields",
-                        "cutoff_frequency": 0.0007,
-                        "operator": "and",
-                        "fields": ["message"]
-                      }
-                    },
+                    // "must": {
+                    //   "multi_match": {
+                    //     "query": search_filter,
+                    //     "type": "best_fields",
+                    //     "cutoff_frequency": 0.0007,
+                    //     "operator": "and",
+                    //     "fields": ["message"]
+                    //   }
+                    // },
                     "should": {
                       "multi_match": {
                         "query": search_filter,
