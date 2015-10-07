@@ -59,7 +59,7 @@ function FilterBuilder(){
                     //     "fields": ["message"]
                     //   }
                     // },
-                    "should": {
+                    "must": {
                       "multi_match": {
                         "query": search_filter,
                         "type": "phrase",
