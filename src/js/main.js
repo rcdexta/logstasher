@@ -61,7 +61,8 @@ var $app_group = [
     {icon: '<img src="assets/images/java.png"/>', name: "MagicListService", ticked: true},
     {icon: '<img src="assets/images/java.png"/>', name: "Timecop", ticked: true},
     {icon: '<img src="assets/images/java.png"/>', name: "WorkflowService", ticked: true},
-    {icon: '<img src="assets/images/java.png"/>', name: "JobManagerService", ticked: true}
+    {icon: '<img src="assets/images/java.png"/>', name: "JobManagerService", ticked: true},
+    {icon: '<img src="assets/images/java.png"/>', name: "InvoiceService", ticked: true}
 ];
 
 var $duration_options = [
@@ -74,6 +75,7 @@ var $duration_options = [
     {label: 'Last 6h', value: 360},
     {label: 'Last 12h', value: 720},
     {label: 'Last 24h', value: 1440},
+    {label: 'Last 3d', value: 4320},
     {label: 'Last 7d', value: 10080},
     {label: 'Last 30d', value: 43200},
     {label: 'Last 60d', value: 86400}
