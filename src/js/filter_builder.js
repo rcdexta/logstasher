@@ -49,24 +49,14 @@ function FilterBuilder(){
             }
             else {
                 this.searchFilter = {
-                  "bool": {
-                    // "must": {
-                    //   "multi_match": {
-                    //     "query": search_filter,
-                    //     "type": "best_fields",
-                    //     "cutoff_frequency": 0.0007,
-                    //     "operator": "and",
-                    //     "fields": ["message"]
-                    //   }
-                    // },
-                    "must": {
-                      "multi_match": {
-                        "query": search_filter,
-                        "type": "phrase",
-                        "fields": ["message"]
+                      "match": {
+                        "message": {
+                          "query": search_filter,
+                          "operator": "and",
+                          "minimum_should_match": "100%"
+                        }
                       }
-                    }
-                  }
+
                 };
             }
         }
