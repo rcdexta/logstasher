@@ -22,7 +22,7 @@ function FilterBuilder(){
     };
 
     this.withAbsoluteTimestamp = function(iso_timestamp){
-      var tsFilter = {"gte": ""+iso_timestamp+"Z")}
+      var tsFilter = {"gte": ""+iso_timestamp+"Z"};
       this.timestampFilter = {
           "range": {
               "@timestamp": tsFilter
