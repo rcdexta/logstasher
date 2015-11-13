@@ -6,23 +6,9 @@ function FilterBuilder(){
     this.requestIdFilter = {};
 
     this.withTimestamp = function(absoluteTimestamp, lastTimestamp, duration_in_mins) {
-      if (absoluteTimestamp){
-          console.log('Using absoluteTimestamp');
-          return this.withAbsoluteTimestamp(absoluteTimestamp);
-      }
-      var tsFilter = lastTimestamp == null ?
-          {"gte": clock.getUTCOffset(duration_in_mins)} :
-          {"gt": lastTimestamp};
-      this.timestampFilter = {
-          "range": {
-              "@timestamp": tsFilter
-          }
-      };
-      return this;
-    };
+      var tsFilter = lastTimestamp ? {"gt": lastTimestamp} :
+        (absoluteTimestamp ? {"gte": absoluteTimestamp} : {"gte": clock.getUTCOffset(duration_in_mins)});
 
-    this.withAbsoluteTimestamp = function(iso_timestamp){
-      var tsFilter = {"gte": iso_timestamp};
       this.timestampFilter = {
           "range": {
               "@timestamp": tsFilter
