@@ -73,10 +73,10 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
     $scope.httpBusy = true;
     $activityIndicator.startAnimating();
 
-    var index_name = clock.getDays($scope.duration_in_mins.value);
+    var indices = clock.getIndicesForDuration($scope.absolute_timestamp, $scope.duration_in_mins.value);
 
     $scope.fetchLogsPromise = client.search({
-      index: index_name,
+      index: indices,
       from: (pageNum - 1) * perPage,
       size: perPage,
       body: filterBody

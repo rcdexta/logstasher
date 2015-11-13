@@ -9,9 +9,9 @@ var clock = {
       return this.elasticSearchFormat(moment(localTime).utc());
     },
 
-    getDays: function(interval_in_minutes){
+    getIndicesForDuration: function(timestamp_utc, interval_in_minutes){
         var days = [];
-        var utcOffset = moment().subtract(interval_in_minutes, 'minutes').utc();
+        var utcOffset = timestamp_utc ? timestamp_utc : moment().subtract(interval_in_minutes, 'minutes').utc();
         while(moment.utc().isAfter(utcOffset, 'day') || moment.utc().isSame(utcOffset, 'day')){
             days.push('logstash-' + utcOffset.utc().format("YYYY.MM.DD"));
             utcOffset.add(1, 'days');
