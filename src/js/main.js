@@ -38,9 +38,10 @@ angular
 
 LogstasherApp.service('client', function (esFactory) {
     return esFactory({
-        host: 'logstasher-staging.pro.com',
+        host: 'https://logstasher-staging.pro.com',
         apiVersion: '1.2',
-        log: 'trace'
+        log: 'trace',
+        protocol: 'https'
     });
 });
 
