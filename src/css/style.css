@@ -40,7 +40,7 @@
     text-align: center;
 }
 
-select.soflow {
+.soflow {
     background-color: transparent;
     border-bottom: 1px solid #777;
     color: #aaa;
@@ -51,6 +51,14 @@ select.soflow {
     text-overflow: ellipsis;
     white-space: nowrap;
     height: 35px;
+}
+
+.white-icon{
+  color: white;
+}
+
+.datetimepicker-text{
+  width: 200px !important;
 }
 
 .search-text {

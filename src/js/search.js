@@ -7,6 +7,8 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
   $scope.highlight_keyword = false;
   $scope.source_apps = $app_group;
   $scope.duration_options = $duration_options;
+  $scope.advancedDuration = false;
+  $scope.earliestTimestamp = null;
 
   $scope.search_filter = $location.search()['q'];
 
@@ -19,7 +21,11 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
     $scope.lastTimestamp = null;
     $scope.noMoreData = false;
     $scope.flag_404 = false;
-    $scope.paginate();
+    $scope.paginate().then(function(){
+      $scope.earliestTimestamp = _.first($scope.results)['timestamp'];
+      console.log($scope.earliestTimestamp);
+    });
+
   };
 
   $scope.showRequest = function (x_request_id) {
@@ -27,7 +33,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
     if (url.indexOf('#?') != -1) {
       url = url.slice(0, url.indexOf('#?'));
     }
-    window.open(url + '#?q=id:' + x_request_id + '&d=4320', '_blank');
+    window.open(url + '#?q=id:' + x_request_id + '&after=' + $scope.earliestTimestamp, '_blank');
   };
 
   if ($scope.search_filter) {
@@ -46,7 +52,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
     elt.removeClass('nowrap');
   };
 
-  $scope.paginate = function () {
+  $scope.paginate = function (firstCallFlag) {
 
     if ($scope.httpBusy) return;
 
@@ -59,9 +65,12 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
       $scope.highlight_keyword = '';
     }
 
-    if ($location.search()['after']) {
-        $scope.absolute_timestamp = clock.parseLocalTime($location.search()['after']);
+    if ($location.search()['after'] || $scope.after) {
+        $scope.after = $scope.after || moment($location.search()['after']).toDate();
+        console.log('datepicker value: ' + $scope.after.toISOString());
+        $scope.absolute_timestamp = clock.parseLocalTime($scope.after.toISOString());
         console.log('$scope.absolute_timestamp: ' + $scope.absolute_timestamp);
+        $scope.advancedDuration = true;
     }
 
     var filterBody = FilterBuilder()
@@ -97,6 +106,9 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
         }));
         $scope.fetch_count = $scope.results.length;
         $scope.lastTimestamp = _.last(results)['@timestamp'];
+        if (!$scope.earliestTimestamp){
+          $scope.earliestTimestamp = _.first(results)['@timestamp'];
+        }
         $scope.timezone = moment(Date.parse($scope.lastTimestamp)).format('Z');
       } else {
         $scope.noMoreData = true;
@@ -109,6 +121,28 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
     }, function (error) {
       console.log(error);
     });
+
+    return $scope.fetchLogsPromise;
+
   };
+
+  $scope.isOpen = false;
+
+  $scope.openCalendar = function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+
+    $scope.isOpen = true;
+  };
+
+  $scope.showSimpleDateWidget = function(){
+    $scope.advancedDuration = false;
+    $scope.after = null;
+    $scope.absolute_timestamp = null;
+  };
+
+  $scope.showAdvancedDateWidget = function(){
+    $scope.advancedDuration = true;
+  }
 
 });

@@ -24,7 +24,7 @@
                     </a>
                 </div>
 
-                <div class="col-md-5">
+                <div class="col-md-4">
                     <multi-select
                             input-model="source_apps"
                             button-label="icon name"
@@ -36,7 +36,7 @@
                     </multi-select>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-3">
                     <div class="input-group search-text">
                         <input type="text" class="form-control transparent " ng-model="search_filter"
                                placeholder="search by any keyword or id:<x_request_id>" ng-enter="resetAndPaginate()">
@@ -44,19 +44,51 @@
                     </div>
                 </div>
 
-                <div class="col-md-2 clocker">
-                    <i class="fa fa-clock-o clock-icon"></i>
+                <div class="col-md-4 clocker">
+                  <div class="btn-group" uib-dropdown >
+
+                    <button id="single-button" type="button" class="btn btn-default soflow" uib-dropdown-toggle ng-disabled="disabled">
+                      <i class="fa fa-clock-o clock-icon"></i>
+                      <span class="caret"></span>
+                    </button>
+                    <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+                      <li role="menuitem"><a href="#" ng-click="showSimpleDateWidget()">
+                        <i class="fa fa-fw" ng-class="{'fa-check': !advancedDuration}"></i> Simple
+                      </a></li>
+                      <li role="menuitem"><a href="#" ng-click="showAdvancedDateWidget()">
+                          <i class="fa fa-fw"  ng-class="{'fa-check': advancedDuration}"></i>Advanced
+                      </a></li>
+                    </ul>
+                  </div>
+
+
+                    <span class="input-group" ng-show="advancedDuration">
+                        <input type="text" class="form-control soflow datetimepicker-text" datetime-picker="yyyy-MM-ddTHH:mm:ss.sss"
+                        ng-model="after" is-open="isOpen"  />
+                        <span class="input-group-btn ">
+                            <button type="button" class="btn btn-default " ng-click="openCalendar($event, prop)">
+                              <i class="fa fa-calendar"></i></button>
+                        </span>
+                    </span>
 
                     <select ng-model="duration_in_mins"
                             ng-options="opt as opt.label for opt in duration_options"
                             class="soflow"
-                            ng-change="resetAndPaginate()">
+                            ng-change="resetAndPaginate()" ng-hide="advancedDuration">
                     </select>
 
                     <a ng-click="resetAndPaginate()" class="btn btn-success refresh-btn">
                         <i class="glyphicon glyphicon-refresh " ng-class="{'glyphicon-refresh-animate': httpBusy}"></i>
                     </a>
                 </div>
+
+                <!--<div class="col-md-2 clocker">-->
+                    <!-- -->
+
+                    <!-- -->
+
+
+                <!--</div>-->
 
             </div>
 
@@ -136,11 +168,13 @@
 <script src="bower_components/elasticsearch/elasticsearch.angular.min.js"></script>
 <script src="bower_components/underscore/underscore-min.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
 <script src="bower_components/angular-multi-select/angular-multi-select.js"></script>
 <script src="bower_components/moment/min/moment.min.js"></script>
 <script src="bower_components/ngActivityIndicator/ngActivityIndicator.min.js"></script>
 <script src="bower_components/angular-busy/dist/angular-busy.js"></script>
+<script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.min.js"></script>
 
 <script src="src/js/main.js"></script>
 <script src="src/js/clock.js"></script>

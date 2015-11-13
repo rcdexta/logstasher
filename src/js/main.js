@@ -5,7 +5,7 @@ underscore.factory('_', function() {
 
 
 var LogstasherApp = angular.module('LogstasherApp', ['elasticsearch', 'underscore', 'smart-table',
-    'ui.bootstrap', 'multi-select', 'ngActivityIndicator', 'cgBusy'])
+    'ui.bootstrap', 'multi-select', 'ngActivityIndicator', 'cgBusy', 'ui.bootstrap.datetimepicker'])
     .directive('stRatio',function(){
         return {
             link:function(scope, element, attr){
