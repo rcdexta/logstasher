@@ -20,6 +20,6 @@ var clock = {
     },
 
     elasticSearchFormat: function(moment_instance){
-      return moment_instance.format("YYYY-MM-DDTHH:mm:ss.SSS\\Z");
+      return moment_instance ? moment_instance.format("YYYY-MM-DDTHH:mm:ss.SSS\\Z") : moment_instance;
     }
 };
