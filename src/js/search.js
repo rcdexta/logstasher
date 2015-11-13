@@ -5,15 +5,14 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
   $scope.httpBusy = false;
   $scope.flag_404 = false;
   $scope.highlight_keyword = false;
-
-  $scope.formatRequestId = function (requestId) {
-    return requestId != undefined ? requestId.substring(0, 8) : '';
-  };
-
   $scope.source_apps = $app_group;
   $scope.duration_options = $duration_options;
 
   $scope.search_filter = $location.search()['q'];
+
+  $scope.formatRequestId = function (requestId) {
+    return requestId != undefined ? requestId.substring(0, 8) : '';
+  };
 
   $scope.resetAndPaginate = function () {
     $scope.results = [];
@@ -32,10 +31,11 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
   };
 
   if ($scope.search_filter) {
-    var duration_from_url = $location.search()['d'];
     if ($location.search()['after']) {
         $scope.absolute_timestamp = $location.search()['after'];
+        console.log('$scope.absolute_timestamp: ' + $scope.absolute_timestamp);
     }
+    var duration_from_url = $location.search()['d'];
     var selected_duration = _.findWhere($scope.duration_options, {value: parseInt(duration_from_url)});
     var selected_index = _.indexOf($scope.duration_options, selected_duration);
     var idx = selected_index == $scope.duration_options.length - 1 ? selected_index : selected_index + 1;

@@ -7,6 +7,7 @@ function FilterBuilder(){
 
     this.withTimestamp = function(absoluteTimestamp, lastTimestamp, duration_in_mins) {
       if (absoluteTimestamp){
+          console.log('Using absoluteTimestamp');
           return this.withAbsoluteTimestamp(absoluteTimestamp);
       }
       var tsFilter = lastTimestamp == null ?
