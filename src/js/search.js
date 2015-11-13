@@ -31,10 +31,6 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
   };
 
   if ($scope.search_filter) {
-    if ($location.search()['after']) {
-        $scope.absolute_timestamp = $location.search()['after'];
-        console.log('$scope.absolute_timestamp: ' + $scope.absolute_timestamp);
-    }
     var duration_from_url = $location.search()['d'];
     var selected_duration = _.findWhere($scope.duration_options, {value: parseInt(duration_from_url)});
     var selected_index = _.indexOf($scope.duration_options, selected_duration);
@@ -61,6 +57,11 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
       $scope.highlight_keyword = $scope.search_filter;
     } else {
       $scope.highlight_keyword = '';
+    }
+
+    if ($location.search()['after']) {
+        $scope.absolute_timestamp = $location.search()['after'];
+        console.log('$scope.absolute_timestamp: ' + $scope.absolute_timestamp);
     }
 
     var filterBody = FilterBuilder()
