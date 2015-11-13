@@ -5,16 +5,29 @@ function FilterBuilder(){
     this.searchFilter = null;
     this.requestIdFilter = {};
 
-    this.withTimestamp = function(lastTimestamp, duration_in_mins) {
-        var tsFilter = lastTimestamp == null ?
-            {"gte": clock.getUTCOffset(duration_in_mins)} :
-            {"gt": lastTimestamp};
-        this.timestampFilter = {
-            "range": {
-                "@timestamp": tsFilter
-            }
-        };
-        return this;
+    this.withTimestamp = function(absoluteTimestamp, lastTimestamp, duration_in_mins) {
+      if (absoluteTimestamp){
+          return this.withAbsoluteTimestamp(absoluteTimestamp);
+      }
+      var tsFilter = lastTimestamp == null ?
+          {"gte": clock.getUTCOffset(duration_in_mins)} :
+          {"gt": lastTimestamp};
+      this.timestampFilter = {
+          "range": {
+              "@timestamp": tsFilter
+          }
+      };
+      return this;
+    };
+
+    this.withAbsoluteTimestamp = function(iso_timestamp){
+      var tsFilter = {"gte": ""+iso_timestamp+"Z")}
+      this.timestampFilter = {
+          "range": {
+              "@timestamp": tsFilter
+          }
+      };
+      return this;
     };
 
     this.withApps = function(source_apps){

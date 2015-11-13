@@ -28,11 +28,14 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
     if (url.indexOf('#?') != -1) {
       url = url.slice(0, url.indexOf('#?'));
     }
-    window.open(url + '#?q=id:' + x_request_id + '&d=' + $scope.duration_in_mins.value, '_blank');
+    window.open(url + '#?q=id:' + x_request_id + '&d=4320', '_blank');
   };
 
   if ($scope.search_filter) {
     var duration_from_url = $location.search()['d'];
+    if ($location.search()['after']) {
+        $scope.absolute_timestamp = $location.search()['after'];
+    }
     var selected_duration = _.findWhere($scope.duration_options, {value: parseInt(duration_from_url)});
     var selected_index = _.indexOf($scope.duration_options, selected_duration);
     var idx = selected_index == $scope.duration_options.length - 1 ? selected_index : selected_index + 1;
@@ -61,7 +64,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
     }
 
     var filterBody = FilterBuilder()
-      .withTimestamp($scope.lastTimestamp, $scope.duration_in_mins.value)
+      .withTimestamp($scope.absolute_timestamp, $scope.lastTimestamp, $scope.duration_in_mins.value)
       .withApps($scope.source_apps)
       .withSearchFilter($scope.search_filter)
       .filter();
