@@ -68,6 +68,7 @@
 
 .search-text input {
     color: #aaa;
+    font-size: 11px !important;
 }
 
 .search-text .input-group-addon {
