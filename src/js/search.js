@@ -60,7 +60,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
     }
 
     if ($location.search()['after']) {
-        $scope.absolute_timestamp = $location.search()['after'];
+        $scope.absolute_timestamp = clock.parseLocalTime($location.search()['after']);
         console.log('$scope.absolute_timestamp: ' + $scope.absolute_timestamp);
     }
 

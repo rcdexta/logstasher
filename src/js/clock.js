@@ -1,8 +1,14 @@
 var clock = {
+
     getUTCOffset: function(interval_in_minutes){
         var utcOffset = moment().subtract(interval_in_minutes, 'minutes').utc();
-        return utcOffset.format("YYYY-MM-DDTHH:mm:ss.SSS\\Z")
+        return this.elasticSearchFormat(utcOffset);
     },
+
+    parseLocalTime: function(localTime){
+      return this.elasticSearchFormat(moment(localTime).utc());
+    },
+
     getDays: function(interval_in_minutes){
         var days = [];
         var utcOffset = moment().subtract(interval_in_minutes, 'minutes').utc();
@@ -11,5 +17,9 @@ var clock = {
             utcOffset.add(1, 'days');
         }
         return days.join(',')
+    },
+
+    elasticSearchFormat: function(moment_instance){
+      return moment_instance.format("YYYY-MM-DDTHH:mm:ss.SSS\\Z");
     }
 };
