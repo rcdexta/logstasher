@@ -6,14 +6,14 @@ var clock = {
     },
 
     parseLocalTime: function(localTime){
-      return this.elasticSearchFormat(moment(localTime).utc());
+      return moment(localTime).utc();
     },
 
     getIndicesForDuration: function(timestamp_utc, interval_in_minutes){
         var days = [];
         var utcOffset = timestamp_utc ? timestamp_utc : moment().subtract(interval_in_minutes, 'minutes').utc();
         while(moment.utc().isAfter(utcOffset, 'day') || moment.utc().isSame(utcOffset, 'day')){
-            days.push('logstash-' + utcOffset.utc().format("YYYY.MM.DD"));
+            days.push('logstash-' + utcOffset.format("YYYY.MM.DD"));
             utcOffset.add(1, 'days');
         }
         return days.join(',')

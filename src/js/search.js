@@ -65,7 +65,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
     }
 
     var filterBody = FilterBuilder()
-      .withTimestamp($scope.absolute_timestamp, $scope.lastTimestamp, $scope.duration_in_mins.value)
+      .withTimestamp(clock.elasticSearchFormat($scope.absolute_timestamp), $scope.lastTimestamp, $scope.duration_in_mins.value)
       .withApps($scope.source_apps)
       .withSearchFilter($scope.search_filter)
       .filter();
