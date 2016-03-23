@@ -20,7 +20,7 @@
 
                 <div class="col-md-1 logstasher">
                     <a href="/">
-                        Logstasher Staging
+                        Logstasher Staging 1.3
                     </a>
                 </div>
 
@@ -40,11 +40,12 @@
                     <div class="input-group search-text">
                         <input type="text" class="form-control transparent " ng-model="search_filter"
                                placeholder="search by any keyword or id:<x_request_id>" ng-enter="resetAndPaginate()">
-
                     </div>
+                    <i class="fa fa-question-circle help-icon" ng-click="showHelpModal()"></i>
+
                 </div>
 
-                <div class="col-md-4 clocker">
+                <div class="col-md-4 clocker" ng-cloak>
                   <div class="btn-group" uib-dropdown >
 
                     <button id="single-button" type="button" class="btn btn-default soflow" uib-dropdown-toggle ng-disabled="disabled">
@@ -162,6 +163,28 @@
     </div>
 
 </div>
+
+<script type="text/ng-template" id="myModalContent.html">
+        <div class="modal-header">
+            <h3 class="modal-title">Search Tips</h3>
+        </div>
+        <div class="modal-body">
+            <p>You can search for any text in the content field</p>
+            <pre>Looking up magic list by ID </pre>
+
+            <p>Filter by level of logging</p>
+            <pre>level:error</pre>
+
+            <p>Filter by level of logging and also a search term</p>
+            <pre>level:error NullPointerException</pre>
+
+            <p>Filter by request id</p>
+            <pre>id:261eb13e-2f80-4640-8ad1-bc7f7cdbcbd1</pre>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="cancel()">Close</button>
+        </div>
+    </script>
 
 <!-- include bower components in proper order -->
 <script src="bower_components/angular/angular.min.js"></script>

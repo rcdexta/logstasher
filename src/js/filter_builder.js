@@ -2,6 +2,7 @@ function FilterBuilder(){
 
     this.timestampFilter = null;
     this.sourceAppsFilter = {};
+    this.levelsFilter = {};
     this.searchFilter = null;
     this.requestIdFilter = {};
 
@@ -31,6 +32,13 @@ function FilterBuilder(){
 
     this.withSearchFilter = function(search_filter){
         if (search_filter != undefined && search_filter != ''){
+
+            var levelOperator = search_filter.match(/level\:(\w+)/, "");
+            if (levelOperator){
+              this.levelsFilter = {"terms":{"level": [levelOperator[1]]}};
+              search_filter = search_filter.replace(/level\:(\w+)/, "");
+            }
+
             if (search_filter.indexOf("x_request_id:") == 0 || search_filter.indexOf("id:") == 0){
                 var filter_json = {};
                 filter_json['x_request_id'] = search_filter.split(':')[1];
@@ -46,17 +54,36 @@ function FilterBuilder(){
                     "path": "properties"
                   }
                 };
+                search_filter = search_filter.replace(/id\:([a-z0-9-]+)/, "");
             }
-            else {
+
+            search_filter = search_filter.trim();
+
+            if (search_filter != ''){
                 this.searchFilter = {
-                      "match": {
+                  "bool": {
+                    "should": [
+                      {"match": {
                         "message": {
-                          "query": search_filter,
-                          "operator": "and",
-                          "minimum_should_match": "100%"
+                            "query": search_filter,
+                            "operator": "and",
+                            "minimum_should_match": "100%",
+                            "type": "phrase"
+                          }
+                        }
+                      },
+                      {"match": {
+                        "throwable": {
+                            "query": search_filter,
+                            "operator": "and",
+                            "minimum_should_match": "100%",
+                            "type": "phrase"
+                          }
                         }
                       }
-
+                    ],
+                    "minimum_should_match": 1
+                  }
                 };
             }
         }
@@ -70,7 +97,8 @@ function FilterBuilder(){
                         must: [
                                 this.timestampFilter,
                                 this.sourceAppsFilter,
-                                this.requestIdFilter
+                                this.requestIdFilter,
+                                this.levelsFilter
                             ]
                     }
                 },

@@ -62,7 +62,7 @@
 }
 
 .search-text {
-    width: 100%;
+    width: 90%;
     margin-top: 3px;
 }
 
@@ -241,4 +241,17 @@
 
 .angular-highlight {
     background-color: yellow;
+}
+
+.help-icon {
+  color: #fff;
+  font-size: 1.5em;
+  vertical-align: middle;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+pre {
+  background-color: #000;
+  color: #555;
 }

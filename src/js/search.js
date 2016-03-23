@@ -1,4 +1,4 @@
-LogstasherApp.controller('LogController', function ($scope, client, esFactory, _, $activityIndicator, $location) {
+LogstasherApp.controller('LogController', function ($scope, client, esFactory, _, $activityIndicator, $location, $uibModal) {
 
   $scope.results = [];
   $scope.lastTimestamp = null;
@@ -11,6 +11,15 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
   $scope.earliestTimestamp = null;
 
   $scope.search_filter = $location.search()['q'];
+
+  $scope.showHelpModal = function(){
+    var modalInstance = $uibModal.open({
+      animation: $scope.animationsEnabled,
+      templateUrl: 'myModalContent.html',
+      controller: 'ModalInstanceCtrl',
+      size: 'md'
+    });
+  }
 
   $scope.formatRequestId = function (requestId) {
     return requestId != undefined ? requestId.substring(0, 8) : '';
@@ -145,4 +154,11 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
     $scope.advancedDuration = true;
   }
 
+});
+
+LogstasherApp.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
+
+  $scope.cancel = function () {
+    $uibModalInstance.dismiss('cancel');
+  };
 });
