@@ -3,7 +3,7 @@
 <head>
     <title>Logstasher Staging</title>
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="bower_components/angular-multi-select/angular-multi-select.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-multi-select/isteven-multi-select.css">
     <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/ngActivityIndicator/css/ngActivityIndicator.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/angular-busy/dist/angular-busy.css">
@@ -20,20 +20,22 @@
 
                 <div class="col-md-1 logstasher">
                     <a href="/">
-                        Logstasher Staging 1.3
+                        Logstasher Staging 1.4
                     </a>
                 </div>
 
                 <div class="col-md-4">
-                    <multi-select
+                    <div
+                            isteven-multi-select
                             input-model="source_apps"
                             button-label="icon name"
-                            item-label="icon name"
+                            item-label="icon name "
                             tick-property="ticked"
                             max-labels="5"
+                            max-height="500px"
                             on-close="resetAndPaginate()"
                             >
-                    </multi-select>
+                    </div>
                 </div>
 
                 <div class="col-md-3">
@@ -193,16 +195,18 @@
 <script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
 <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
-<script src="bower_components/angular-multi-select/angular-multi-select.js"></script>
+<script src="bower_components/angular-multi-select/isteven-multi-select.js"></script>
 <script src="bower_components/moment/min/moment.min.js"></script>
 <script src="bower_components/ngActivityIndicator/ngActivityIndicator.min.js"></script>
 <script src="bower_components/angular-busy/dist/angular-busy.js"></script>
 <script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.min.js"></script>
 
-<script src="src/js/main.js"></script>
+
 <script src="src/js/clock.js"></script>
+<script src="src/js/sources.js"></script>
 <script src="src/js/infinitescroll.js"></script>
 <script src="src/js/filter_builder.js"></script>
+<script src="src/js/main.js"></script>
 <script src="src/js/search.js"></script>
 
 </body>

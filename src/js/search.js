@@ -1,11 +1,12 @@
 LogstasherApp.controller('LogController', function ($scope, client, esFactory, _, $activityIndicator, $location, $uibModal) {
 
+  var icon_flavours = ["blue", "black", "dg", "gold", "grey", "orange", "red", "pink", "violet"];
+
   $scope.results = [];
   $scope.lastTimestamp = null;
   $scope.httpBusy = false;
   $scope.flag_404 = false;
   $scope.highlight_keyword = false;
-  $scope.source_apps = $app_group;
   $scope.duration_options = $duration_options;
   $scope.advancedDuration = false;
   $scope.earliestTimestamp = null;
@@ -21,6 +22,16 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
     });
   }
 
+  sources.getAll(client).then(function (response) {
+    var sources = _.pluck(response.aggregations.apps.buckets, "key");
+    var apps = _.map(_.sortBy(sources), function(source){
+      var appName =  source.charAt(0).toUpperCase() + source.substring(1).toLowerCase(); //capitalize
+      var iconType = icon_flavours[Math.floor(Math.random()*icon_flavours.length)];
+      return {icon: '<img src="assets/images/app_icons/' + source.charAt(0) + '_' + iconType + '.ico"/>', name: appName, ticked: true}
+    });
+    $scope.source_apps = apps;
+  });
+
   $scope.formatRequestId = function (requestId) {
     return requestId != undefined ? requestId.substring(0, 8) : '';
   };
@@ -31,8 +42,10 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
     $scope.noMoreData = false;
     $scope.flag_404 = false;
     $scope.paginate().then(function(){
-      $scope.earliestTimestamp = _.first($scope.results)['timestamp'];
-      console.log($scope.earliestTimestamp);
+      if ($scope.results) {
+        $scope.earliestTimestamp = _.first($scope.results)['timestamp'];
+        console.log($scope.earliestTimestamp);
+      }
     });
 
   };
@@ -84,7 +97,7 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
 
     var filterBody = FilterBuilder()
       .withTimestamp(clock.elasticSearchFormat($scope.absolute_timestamp), $scope.lastTimestamp, $scope.duration_in_mins.value)
-      .withApps($scope.source_apps)
+      .withApps($scope.source_apps || [])
       .withSearchFilter($scope.search_filter)
       .filter();
 
