@@ -37,3 +37,12 @@ http.cors:
 
 4. Open the index.html file in your browser.
 5. Check out the source for [index.html](https://github.com/rcdexta/logstasher/blob/master/index.html) to see how it works.
+
+## Deployment
+
+To deploy to production or staging, verify the configuration in `src/config` and run
+
+``` sh
+sh deploy-staging.sh
+sh deploy-prod.sh
+```
