@@ -1,0 +1,11 @@
+{
+  "name": "LogstasherApp",
+  "version": "0.0.4",
+  "author": "RC",
+  "contributors": [],
+  "devDependencies": {
+    "bower": "^1.3.9",
+    "gulp": "~3.8.0",
+    "gulp-ng-config": "^1.2.1"
+  }
+}

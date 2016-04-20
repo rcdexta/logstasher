@@ -1,4 +1,13 @@
-LogstasherApp.controller('LogController', function ($scope, client, esFactory, _, $activityIndicator, $location, $uibModal) {
+LogstasherApp.service('client', function (esFactory, $VARS) {
+  return esFactory({
+    host: $VARS.url,
+    apiVersion: '1.2',
+    log: 'trace',
+    protocol: 'https'
+  });
+});
+
+LogstasherApp.controller('LogController', function ($scope, client, esFactory, _, $activityIndicator, $location, $uibModal, $VARS) {
 
   var icon_flavours = ["blue", "black", "dg", "gold", "grey", "orange", "red", "pink", "violet"];
 
@@ -10,6 +19,8 @@ LogstasherApp.controller('LogController', function ($scope, client, esFactory, _
   $scope.duration_options = $duration_options;
   $scope.advancedDuration = false;
   $scope.earliestTimestamp = null;
+  $scope.app_name = $VARS.name;
+  $scope.app_version = $VARS.version;
 
   $scope.search_filter = $location.search()['q'];
 
